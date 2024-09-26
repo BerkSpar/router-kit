@@ -64,6 +64,44 @@ struct ContentView: View {
 }
 ```
 
+- **Step 3**: Use on each page you want.
+
+```swift
+import SwiftUI
+
+// Import the RouterKit to use in your project
+import RouterKit
+
+struct HomeView: View {
+    // Every view that was rendered by RouterView has a router inside
+    @EnvironmentObject var router: Router<AppRoute>
+    
+    var body: some View {
+        VStack {
+            Button("Push view") {
+                router.push(to: .profile(userID: '<user-id>'))
+            }
+
+            Button("Push view without animation") {
+                router.push(to: .profile(userID: '<user-id>'), animate: false)
+            }
+
+            Button("Pop view") {
+                router.pop()
+            }
+
+            Button("Pop to root view") {
+                router.popToRoot()
+            }
+
+            Button("Replace root view to another") {
+                router.replaceRootView(to: .settings)
+            }
+        }
+    }
+}
+```
+
 ## Emailware
 
 This project is an [emailware](https://en.wiktionary.org/wiki/emailware). Meaning, if you liked using this app or it has helped you in any way, I'd like you send me an email at <berkspar@gmail.com> about anything you'd want to say about this software. I'd really appreciate it!
