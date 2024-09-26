@@ -17,7 +17,7 @@ public struct RouterView<Route: Routable>: View {
     /// Initializes the `RouterView` with a given root view.
     ///
     /// - Parameter rootView: The initial root view for the `RouterView`.
-    init(rootView: Route) {
+    public init(rootView: Route) {
         self.router = Router<Route>(
             route: rootView
         )
