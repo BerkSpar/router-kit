@@ -59,7 +59,7 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         // The RouterView is initialized with the root view of the app.
-        RouterView<AppRoute>(root: .home)
+        RouterView<AppRoute>(rootView: .home)
     }
 }
 ```
