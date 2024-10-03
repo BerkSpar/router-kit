@@ -30,10 +30,9 @@ jobs:
       run: swift test -v --enable-code-coverage
 
     - name: Get code coverage path
-      id: codecov-path
-      run: echo "::set-output name=path::$(swift test --show-codecov-path)"
+      run: echo "path=$(swift test --show-codecov-path)" >> $GITHUB_OUTPUT
       
     - name: Upload coverage to Codecov
-      run: bash <(curl -s https://codecov.io/bash) -f ${{ steps.codecov-path.outputs.path }}
+      run: bash <(curl -s https://codecov.io/bash) -f ${{ steps.get-path.outputs.path }}
       env:
         CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
