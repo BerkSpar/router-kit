@@ -30,8 +30,11 @@ jobs:
       run: swift test -v --enable-code-coverage
 
     - name: Install llvm
-      run: brew install llvm && echo 'export PATH="/opt/homebrew/opt/llvm/bin:$PATH"' >> /Users/runner/.bash_profile && source /Users/runner/.bash_profile
-
+      run: |
+        brew install llvm
+        echo 'export PATH="/opt/homebrew/opt/llvm/bin:$PATH"' >> $GITHUB_ENV
+        source $GITHUB_ENV
+    
     - name: Convert to lcov.info
       run: llvm-cov export -format=lcov  -instr-profile=.build/arm64-apple-macosx/debug/codecov/default.profdata .build/arm64-apple-macosx/debug/RouterKitPackageTests.xctest/Contents/MacOS/RouterKitPackageTests > lcov.info
       
