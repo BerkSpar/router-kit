@@ -29,10 +29,13 @@ jobs:
     - name: Run tests
       run: swift test -v --enable-code-coverage
 
-    - name: Get code coverage path
-      run: echo "path=$(swift test --show-codecov-path)" >> $GITHUB_OUTPUT
+    - name: Install llvm
+      run: brew install llvm
+
+    - name: Convert to lcov.info
+      run: llvm-cov export -format=lcov  -instr-profile=.build/arm64-apple-macosx/debug/codecov/default.profdata .build/arm64-apple-macosx/debug/RouterKitPackageTests.xctest/Contents/MacOS/RouterKitPackageTests > lcov.info
       
     - name: Upload coverage to Codecov
-      run: bash <(curl -s https://codecov.io/bash) -f ${{ steps.get-path.outputs.path }}
+      run: bash <(curl -s https://codecov.io/bash) -f lcov.info
       env:
         CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
