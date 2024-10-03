@@ -29,15 +29,5 @@ jobs:
     - name: Run tests
       run: swift test -v --enable-code-coverage
 
-    - uses: michaelhenry/swifty-code-coverage@v1.0.0
-      with:
-        build-path: .build
-        target: RouterKitPackageTests.xctest
-        is-spm: true
-
-    - name: Upload to Codecov
-      run: |
-        bash <(curl https://codecov.io/bash) -f "coverage/*.info"
-      shell: bash
-      env:
-        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v1.2.1
