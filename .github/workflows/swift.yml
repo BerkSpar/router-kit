@@ -11,12 +11,18 @@ on:
 
 jobs:
   build:
-
     runs-on: macos-latest
 
     steps:
     - uses: actions/checkout@v4
+
+    - name: Install Swift 6.0.0
+      run: |
+        brew install swift
+        brew link swift --overwrite
+
     - name: Build
       run: swift build -v
+    
     - name: Run tests
       run: swift test -v
