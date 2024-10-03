@@ -4,6 +4,11 @@
 </h1>
 
 <h4 align="center">SwiftUI Navigation Router</h4>
+<div align="center">
+  <img src="https://codecov.io/github/BerkSpar/router-kit/graph/badge.svg?token=FZJ11DUEYR"/>
+</div>
+
+</br>
 
 <p align="center">
   <a href="#key-features">Key Features</a> •
