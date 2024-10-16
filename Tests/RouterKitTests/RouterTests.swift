@@ -59,6 +59,74 @@ struct RouterTests {
         #expect(router.root is Text)
     }
     
+    @Test("Router pop until the view")
+    func popUntilView() {
+        let route1 = MockRoute()
+        let route2 = MockRoute()
+        let route3 = MockRoute()
+        
+        let router = Router(route: route1)
+        
+        router.push(to: route2)
+        router.push(to: route3)
+        
+        router.popUntil(route: route2)
+        
+        #expect(router.stack.last == route2)
+    }
+    
+    @Test("Router pop until the view and not find")
+    func popUntilRoot() {
+        let route1 = MockRoute()
+        let route2 = MockRoute()
+        let route3 = MockRoute()
+        
+        let router = Router(route: route1)
+        
+        router.push(to: route3)
+        router.push(to: route3)
+        
+        router.popUntil(route: route2)
+        
+        #expect(router.stack.isEmpty)
+    }
+    
+    @Test("Router pop where find route")
+    func popWhereFindRoute() {
+        let route1 = MockRoute()
+        let route2 = MockRoute()
+        let route3 = MockRoute()
+        
+        let router = Router(route: route1)
+        
+        router.push(to: route2)
+        router.push(to: route3)
+        
+        router.popWhere { route in
+            route.id == route2.id
+        }
+        
+        #expect(router.stack.last == route2)
+    }
+    
+    @Test("Router pop where find route and not find")
+    func popWhereFindRouteAndNotFind() {
+        let route1 = MockRoute()
+        let route2 = MockRoute()
+        let route3 = MockRoute()
+        
+        let router = Router(route: route1)
+        
+        router.push(to: route2)
+        router.push(to: route3)
+        
+        router.popWhere { route in
+            false
+        }
+        
+        #expect(router.stack.isEmpty)
+    }
+    
     @Test("Router pop to root clears the stack")
     func popToRoot() {
         let initialRoute = MockRoute()

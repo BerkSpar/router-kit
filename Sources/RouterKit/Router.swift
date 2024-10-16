@@ -14,7 +14,7 @@ import SwiftUI
 public class Router<Route: Routable>: ObservableObject {
     
     /// The navigation stack that tracks the current routes.
-    @Published var stack = NavigationPath()
+    @Published var stack: [Route] = []
     
     /// The root view of the navigation, displayed when no routes are on the stack.
     @Published var root: any View
@@ -67,9 +67,39 @@ public class Router<Route: Routable>: ObservableObject {
         }
     }
     
+    /// Pops until find the route.
+    ///
+    /// If not find the route, it's clear the stack.
+    ///
+    /// - Parameter route: The route expected to stop the pop.
+    public func popUntil(route: Route) {
+        for item in stack.reversed() {
+            if item == route {
+                return
+            }
+            
+            pop()
+        }
+    }
+    
+    /// Pops until condition return true.
+    ///
+    /// If not find the route, it's clear the stack.
+    ///
+    /// - Parameter condition: The condition to stop the pop.
+    public func popWhere(condition: (Route) -> Bool) {
+        for item in stack.reversed() {
+            if condition(item) {
+                return
+            }
+            
+            pop()
+        }
+    }
+    
     /// Pops all routes and resets the stack to the root view.
     public func popToRoot() {
-        stack = NavigationPath()
+        stack = []
     }
 }
 
