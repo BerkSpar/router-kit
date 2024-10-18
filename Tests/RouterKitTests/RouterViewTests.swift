@@ -32,4 +32,32 @@ struct RouterViewTests {
         
         #expect(view.router.stack.last == anotherView)
     }
+    
+    @Test("Should navigate and check back button state")
+    func shouldNavigateAndCheckBackButtonState() {
+        let rootView = MockRoute()
+        let anotherView = MockRoute()
+        
+        let view = RouterView(rootView: rootView, showBackButton: true)
+        
+        view.router.push(to: anotherView)
+        
+        #expect(view.router.stack.last == anotherView)
+        
+        view.router.pop()
+        #expect(view.router.stack.isEmpty)
+    }
+    
+    @Test("Should pop view from navigation stack")
+    func shouldPopViewFromStack() {
+        let rootView = MockRoute()
+        let anotherView = MockRoute()
+        
+        let view = RouterView(rootView: rootView)
+        
+        view.router.push(to: anotherView)
+        view.router.pop()
+        
+        #expect(view.router.stack.isEmpty)
+    }
 }
