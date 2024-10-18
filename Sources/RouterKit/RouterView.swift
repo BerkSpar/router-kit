@@ -17,9 +17,10 @@ public struct RouterView<Route: Routable>: View {
     /// Initializes the `RouterView` with a given root view.
     ///
     /// - Parameter rootView: The initial root view for the `RouterView`.
-    public init(rootView: Route) {
+    public init(rootView: Route, showBackButton: Bool = true) {
         self.router = Router<Route>(
-            route: rootView
+            route: rootView,
+            showBackButton: showBackButton
         )
     }
     
