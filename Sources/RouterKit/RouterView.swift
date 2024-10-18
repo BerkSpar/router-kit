@@ -29,6 +29,7 @@ public struct RouterView<Route: Routable>: View {
             AnyView(router.root)
                 .navigationDestination(for: Route.self) { route in
                     AnyView(route.view)
+                        .navigationBarBackButtonHidden(!router.showBackButton)
                 }
         }
         .environmentObject(router)

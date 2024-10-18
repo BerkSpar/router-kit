@@ -12,11 +12,14 @@ import Testing
 @Suite("Router tests")
 struct RouterTests {
     
-    @Test("Router is initialized correctly")
-    func routerInitialization() {
+    @Test("Router is initialized correctly", arguments: [true, false])
+    func routerInitialization(_ showBackButton: Bool) {
         let initialRoute = MockRoute()
         
-        let router = Router(route: initialRoute)
+        let router = Router(
+            route: initialRoute,
+            showBackButton: showBackButton
+        )
         
         #expect(router.root is Text)
         #expect(router.stack.isEmpty)

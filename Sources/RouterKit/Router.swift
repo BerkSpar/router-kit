@@ -19,11 +19,15 @@ public class Router<Route: Routable>: ObservableObject {
     /// The root view of the navigation, displayed when no routes are on the stack.
     @Published var root: any View
     
+    /// Define if showBackButton by default. The default value is true.
+    @Published var showBackButton: Bool
+    
     /// Initializes the `Router` with a given root view.
     ///
     /// - Parameter root: The initial view displayed by the router.
-    public init(route: Route) {
+    public init(route: Route, showBackButton: Bool = true) {
         self.root = route.view
+        self.showBackButton = showBackButton
     }
     
     /// Pushes a new route onto the navigation stack.
