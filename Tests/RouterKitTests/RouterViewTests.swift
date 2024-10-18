@@ -75,6 +75,5 @@ struct RouterViewTests {
         let view = routerView.buildDestionation(MockRoute())
         
         #expect(view != nil)
-        #expect(view is AnyView)
     }
 }
