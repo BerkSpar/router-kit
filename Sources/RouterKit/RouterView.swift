@@ -24,7 +24,7 @@ public struct RouterView<Route: Routable>: View {
         )
     }
     
-    func buildDestionation(_ route: Route) -> some View {
+    func buildDestination(_ route: Route) -> some View {
         AnyView(route.view)
             .navigationBarBackButtonHidden(!router.showBackButton)
     }
@@ -33,7 +33,7 @@ public struct RouterView<Route: Routable>: View {
     public var body: some View {
         NavigationStack(path: $router.stack) {
             AnyView(router.root)
-                .navigationDestination(for: Route.self, destination: buildDestionation)
+                .navigationDestination(for: Route.self, destination: buildDestination)
         }
         .environmentObject(router)
     }

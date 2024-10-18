@@ -72,7 +72,7 @@ struct RouterViewTests {
     func shouldReturnAnyView() {
         let routerView = RouterView(rootView: MockRoute())
         
-        let view = routerView.buildDestionation(MockRoute())
+        let view = routerView.buildDestination(MockRoute())
         
         #expect(view != nil)
     }
