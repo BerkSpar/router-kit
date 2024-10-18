@@ -60,4 +60,11 @@ struct RouterViewTests {
         
         #expect(view.router.stack.isEmpty)
     }
+    
+    @Test("Should has body in RouterView")
+    func shouldHasBody() {
+        let view = RouterView(rootView: MockRoute())
+        
+        #expect(view.body != nil)
+    }
 }
