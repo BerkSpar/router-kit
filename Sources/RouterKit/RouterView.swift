@@ -24,14 +24,16 @@ public struct RouterView<Route: Routable>: View {
         )
     }
     
+    func buildDestionation(_ route: Route) -> some View {
+        AnyView(route.view)
+            .navigationBarBackButtonHidden(!router.showBackButton)
+    }
+    
     /// The body of the view, which contains a `NavigationStack` that updates based on the router's stack.
     public var body: some View {
         NavigationStack(path: $router.stack) {
             AnyView(router.root)
-                .navigationDestination(for: Route.self) { route in
-                    AnyView(route.view)
-                        .navigationBarBackButtonHidden(!router.showBackButton)
-                }
+                .navigationDestination(for: Route.self, destination: buildDestionation)
         }
         .environmentObject(router)
     }

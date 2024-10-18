@@ -67,4 +67,14 @@ struct RouterViewTests {
         
         #expect(view.body != nil)
     }
+    
+    @Test("Should return any view")
+    func shouldReturnAnyView() {
+        let routerView = RouterView(rootView: MockRoute())
+        
+        let view = routerView.buildDestionation(MockRoute())
+        
+        #expect(view != nil)
+        #expect(view is AnyView)
+    }
 }
