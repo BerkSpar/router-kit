@@ -9,7 +9,7 @@ import SwiftUI
 import Testing
 @testable import RouterKit
 
-@Suite("Router tests")
+@Suite("Router Tests")
 struct RouterTests {
     
     @Test("Router is initialized correctly", arguments: [true, false])
