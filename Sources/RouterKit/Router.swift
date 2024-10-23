@@ -66,7 +66,7 @@ public class Router<Route: Routable>: ObservableObject {
 
     /// Pops the last route off the navigation stack, if any.
     public func pop() {
-        if !stack.isEmpty {
+        if canPop() {
             stack.removeLast()
         }
     }
@@ -104,6 +104,10 @@ public class Router<Route: Routable>: ObservableObject {
     /// Pops all routes and resets the stack to the root view.
     public func popToRoot() {
         stack = []
+    }
+
+    public func canPop() -> Bool {
+        return !stack.isEmpty
     }
 }
 
