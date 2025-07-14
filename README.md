@@ -36,6 +36,9 @@ To use this package, you can simply install using **Swift Package Manager** and 
 ```swift
 import SwiftUI
 
+// Import the RouterKit to use in your project
+import RouterKit
+
 enum AppRoute: Routable {
     case login
     case home
@@ -60,6 +63,9 @@ enum AppRoute: Routable {
 
 ```swift
 import SwiftUI
+
+// Import the RouterKit to use in your project
+import RouterKit
 
 struct ContentView: View {
     var body: some View {
