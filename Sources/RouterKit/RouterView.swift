@@ -17,10 +17,11 @@ public struct RouterView<Route: Routable>: View {
     /// Initializes the `RouterView` with a given root view.
     ///
     /// - Parameter rootView: The initial root view for the `RouterView`.
-    public init(rootView: Route, showBackButton: Bool = true) {
+    public init(rootView: Route, showBackButton: Bool = true, swipeBackEnabled: Bool = true) {
         self.router = Router<Route>(
             route: rootView,
-            showBackButton: showBackButton
+            showBackButton: showBackButton,
+            swipeBackEnabled: swipeBackEnabled
         )
     }
     
