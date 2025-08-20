@@ -10,12 +10,18 @@
 import UIKit
 
 extension UINavigationController: @retroactive UIGestureRecognizerDelegate {
+    public static var isSwipeBackEnabled: Bool = true
+    
     override open func viewDidLoad() {
         super.viewDidLoad()
         interactivePopGestureRecognizer?.delegate = self
     }
 
     public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        if (!UINavigationController.isSwipeBackEnabled) {
+            return true
+        }
+        
         return viewControllers.count > 1
     }
 }

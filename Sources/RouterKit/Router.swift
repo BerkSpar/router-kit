@@ -8,6 +8,10 @@
 import Foundation
 import SwiftUI
 
+#if canImport(UIKit)
+import UIKit
+#endif
+
 /// A class responsible for managing navigation in a SwiftUI app.
 /// Uses a `NavigationPath` to control the stack of views and supports pushing, popping,
 /// and replacing the root view.
@@ -25,9 +29,10 @@ public class Router<Route: Routable>: ObservableObject {
     /// Initializes the `Router` with a given root view.
     ///
     /// - Parameter root: The initial view displayed by the router.
-    public init(route: Route, showBackButton: Bool = true) {
+    public init(route: Route, showBackButton: Bool = true, swipeBackEnabled: Bool = true) {
         self.root = route.view
         self.showBackButton = showBackButton
+        self.setSwipeBackEnabled(swipeBackEnabled)
     }
     
     /// Pushes a new route onto the navigation stack.
@@ -108,6 +113,14 @@ public class Router<Route: Routable>: ObservableObject {
 
     public func canPop() -> Bool {
         return !stack.isEmpty
+    }
+    
+    public func setSwipeBackEnabled(_ enabled: Bool) {
+        #if canImport(UIKit)
+        DispatchQueue.main.async {
+            UINavigationController.isSwipeBackEnabled = enabled
+        }
+        #endif
     }
 }
 
