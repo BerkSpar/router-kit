@@ -19,7 +19,7 @@ extension UINavigationController: @retroactive UIGestureRecognizerDelegate {
 
     public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         if (!UINavigationController.isSwipeBackEnabled) {
-            return true
+            return false
         }
         
         return viewControllers.count > 1
