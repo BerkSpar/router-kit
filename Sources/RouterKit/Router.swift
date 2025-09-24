@@ -15,6 +15,7 @@ import UIKit
 /// A class responsible for managing navigation in a SwiftUI app.
 /// Uses a `NavigationPath` to control the stack of views and supports pushing, popping,
 /// and replacing the root view.
+@MainActor
 public class Router<Route: Routable>: ObservableObject {
     
     /// The navigation stack that tracks the current routes.
@@ -123,4 +124,3 @@ public class Router<Route: Routable>: ObservableObject {
         #endif
     }
 }
-

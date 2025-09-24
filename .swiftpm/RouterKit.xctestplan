@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "8EF4B4AD-7A85-4AFD-B514-2051EAA44DBA",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "performanceAntipatternCheckerEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "RouterKitTests",
+        "name" : "RouterKitTests"
+      }
+    }
+  ],
+  "version" : 1
+}

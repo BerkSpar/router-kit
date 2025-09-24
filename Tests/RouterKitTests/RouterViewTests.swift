@@ -10,6 +10,7 @@ import Testing
 @testable import RouterKit
 
 @Suite("RouterView Tests")
+@MainActor 
 struct RouterViewTests {
     @Test("Should initialize RouterView correctly", arguments: [true, false])
     func shouldInitializeCorrectly(_ showBackButton: Bool) {
@@ -17,7 +18,6 @@ struct RouterViewTests {
         
         let view = RouterView(rootView: rootView, showBackButton: showBackButton)
         
-        #expect(view.router != nil)
         #expect(view.router.stack.isEmpty)
     }
     
@@ -49,7 +49,7 @@ struct RouterViewTests {
     }
     
     @Test("Should pop view from navigation stack")
-    func shouldPopViewFromStack() {
+    @MainActor func shouldPopViewFromStack() {
         let rootView = MockRoute()
         let anotherView = MockRoute()
         
@@ -64,16 +64,13 @@ struct RouterViewTests {
     @Test("Should has body in RouterView")
     func shouldHasBody() {
         let view = RouterView(rootView: MockRoute())
-        
-        #expect(view.body != nil)
+        _ = view.body
     }
     
     @Test("Should return any view")
     func shouldReturnAnyView() {
         let routerView = RouterView(rootView: MockRoute())
         
-        let view = routerView.buildDestination(MockRoute())
-        
-        #expect(view != nil)
+        _ = routerView.buildDestination(MockRoute())
     }
 }

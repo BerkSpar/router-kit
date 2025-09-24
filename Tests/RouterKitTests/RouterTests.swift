@@ -10,6 +10,7 @@ import Testing
 @testable import RouterKit
 
 @Suite("Router Tests")
+@MainActor
 struct RouterTests {
     
     @Test("Router is initialized correctly", arguments: [true, false])
